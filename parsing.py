@@ -24,13 +24,14 @@ class ParsingJSON:
     """
     После выгрузки из CRM получаем json-файл в виде списка словарей.
     Проходим циклом по списку, достаем из словаря на каждой итерации ключи и
-    значения и собираем новый словарь в виде
-    {
-        key1: [value11, value12, value13,...],
-        key2: [value21, value22, value23,...],
+    значения и пересобираем новый список словарей, но уже с заданными ключами.
+    Получаем список словарей в таком виде:
+    [
+        {key11: value11, key12: value12, key13: value13,...},
+        {key11: value11, key12: value12, key13: value13,...},
         ...
-    }
-    , где key - заданные в бизнес-логике названия полей(колонок)
+    ]
+    Далее, используя csv.DictWriter, собираем из этого списка *.tsv файл
     """
     def __init__(self):
         self.initial_settings = initial_settings
@@ -43,7 +44,7 @@ class ParsingJSON:
             self.json_file = json.load(json_file)
 
     def transform(self):
-        """Формирует финальный словарь с нужными ключами."""
+        """Формирует финальный набор данных для выгрузки в *.tsv."""
         if self.json_file:
             for dct in self.json_file:
                 self._transform_row(dct)
