@@ -2,22 +2,43 @@ import csv
 import json
 import os
 
+# исходные настройки парсера можно импортировать из другого файла,
+# для этого нужно назвать их ext_settings и указать путь до файла
+try:
+    from some.path import ext_settings  # noqa
+except ImportError:
+    ext_settings = None
+
 
 dirname = os.path.dirname(os.path.abspath(__file__))
 json_file_name = os.path.join(dirname, 'amo_json_2020_40.json')
 tsv_file_name = os.path.join(dirname, 'final_table.tsv')
-
-# TODO !предусмотреть возможность импорта исходных настроек
-# в том числе в виде пустого словаря.
-initial_settings = {
-    # data_format = None  # выбор формата даты
-    # start_week = None  # смещение начала недели
-    # дальше кастомные id
-    'amo_city_id': 512318,
-    'drupal_utm': 632884,
-    'tilda_utm_source': 648158
-    # TODO дописать остальные id
+init_settings = {
+    'date_format': None,  # выбор формата даты !!! не подключено
+    'start_week': None,  # смещение начала недели !!! не подключено
+    'custom_id': {
+        'amo_city_id': 512318,
+        'drupal_utm': 632884,
+        'tilda_utm_source': 648158,
+        'tilda_utm_source': 648158,
+        'tilda_utm_medium': 648160,
+        'tilda_utm_campaign': 648310,
+        'tilda_utm_content': 648312,
+        'tilda_utm_term': 648314,
+        'ct_utm_source': 648256,
+        'ct_utm_medium': 648258,
+        'ct_utm_campaign': 648260,
+        'ct_utm_content': 648262,
+        'ct_utm_term': 648264,
+        'ct_type_communication': 648220,
+        'ct_device': 648276,
+        'ct_os': 648278,
+        'ct_browser': 648280,
+    },
 }
+# Если были импортированы внешние настройки, то они
+# перезаписывают дефолтные
+init_settings = ext_settings if ext_settings else init_settings
 
 
 class ParsingJSON:
@@ -34,7 +55,7 @@ class ParsingJSON:
     Далее, используя csv.DictWriter, собираем из этого списка *.tsv файл
     """
     def __init__(self):
-        self.initial_settings = initial_settings
+        self.init_settings = init_settings
         self.json_file = None
         self.final_dict_data = []
 
@@ -52,37 +73,65 @@ class ParsingJSON:
     def _transform_row(self, dct):
         """Выбирает ключи и значения из текущих словарей
         и составляет список из словарей с нужными ключами."""
-        self.final_dict_data.append({
+        # словарь из "сразу доступных" ключей-значений
+        final_dict_row = {
             'id': dct.get('id'),
-            'created_at': dct.get('created_at', 0),
-            'amo_pipeline_id': dct.get('pipeline_id', 0),
-            'amo_status_id': dct.get('status_id', 0),
-            'amo_updated_at': dct.get('updated_at', 0),
-            'amo_trashed_at': dct.get('trashed_at', 0),
-            'amo_closed_at': dct.get('closed_at', 0),
-        })
-        # TODO 1 оставлять ли None в финальной таблице, или на что-то поменять?
-        # TODO 2 дописать ключи от вложенных словарей
+            'created_at': dct.get('created_at'),
+            'amo_pipeline_id': dct.get('pipeline_id'),
+            'amo_status_id': dct.get('status_id'),
+            'amo_updated_at': dct.get('updated_at'),
+            'amo_trashed_at': dct.get('trashed_at'),
+            'amo_closed_at': dct.get('closed_at'),
+        }
+        # добавляем ключи-значения из вложенных словарей
+        final_dict_row.update(
+            self._get_values_for_custom_id(dct))
+        # добавляем заполненный ряд в финальный словарь
+        self.final_dict_data.append(final_dict_row)
+
+        # TODO +1 оставлять ли None в финальной таблице или на что-то поменять?
+        # TODO +2 дописать ключи от вложенных словарей
         # TODO 3 дописать обработку дат. При смещении старта недели
         # попробовать доработать isocalendar()
+        # TODO 4 дописать отдельную фукцию для drupal_utm
         # TODO 4 дописать проверку отсутствующих ключей-значений по заданию
         # TODO 5 дописать логгер для события из TODO 4
 
+    def _get_values_for_custom_id(self, dct):
+        """Выбирает из текущих словарей значения для кастомных id.
+
+        Значение 'custom_fields_values' представляет собой список словарей.
+        Так как нам нужно сопоставить только значение 'field_id' из каждого
+        словаря со словарем 'custom_id' в init_settings, сохранив при этом
+        порядок, создадим промежуточный словарь вида:
+        {
+            key1: value1,
+            key2: value2,
+            ...
+        }
+        ,где key1 - это значения ключа 'field_id', а value1 - это значение для
+        ключа 'values' из вложенного словаря, которому принадлежит 'field_id'.
+        """
+        nested_dict = {}
+        custom_fields_list = dct['custom_fields_values']
+        for item in custom_fields_list:
+            nested_dict[item['field_id']] = item['values'][0]['value']
+        # выбираем из временного словаря nested_dict только ключи,
+        # указанные в 'custom_id' в init_settings с сохранением порядка
+        add_to_final_dict_row = {}
+        for key, val in init_settings['custom_id'].items():
+            add_to_final_dict_row[key] = nested_dict.get(val)
+        return add_to_final_dict_row
+
     def load(self):
         """Выгружает датафрейм в *.tsv файл."""
-        tsv_columns = [
-            'id', 'created_at', 'amo_pipeline_id', 'amo_status_id',
-            'amo_updated_at', 'amo_trashed_at', 'amo_closed_at',
-        ]
-        try:
-            with open(tsv_file_name, 'w') as tsvfile:
-                writer = csv.DictWriter(
-                    tsvfile, fieldnames=tsv_columns, dialect='excel-tab')
-                writer.writeheader()
-                for data in self.final_dict_data:
-                    writer.writerow(data)
-        except IOError:
-            print("OS error")
+        tsv_columns = self.final_dict_data[0].keys()
+        with open(tsv_file_name, 'w') as tsvfile:
+            writer = csv.DictWriter(
+                tsvfile, fieldnames=tsv_columns, dialect='excel-tab')
+            writer.writeheader()
+            for data in self.final_dict_data:
+                writer.writerow(data)
 
 
 a = ParsingJSON()
