@@ -1,3 +1,12 @@
+# TODO +1 оставлять ли None в финальной таблице или на что-то поменять?
+# TODO +2 дописать ключи от вложенных словарей
+# TODO тесты
+# TODO 3 дописать обработку дат. При смещении старта недели
+# попробовать доработать isocalendar()
+# TODO 4 дописать отдельную фукцию для drupal_utm
+# TODO 4 дописать проверку отсутствующих ключей-значений по заданию
+# TODO 5 дописать логгер для события из TODO 4
+
 import csv
 import json
 import os
@@ -68,13 +77,18 @@ class ParsingJSON:
         """Формирует финальный набор данных для выгрузки в *.tsv."""
         if self.json_file:
             for dct in self.json_file:
-                self._transform_row(dct)
+                self.final_dict_data.append(self._transform_row(dct))
 
     def _transform_row(self, dct):
         """Выбирает ключи и значения из текущих словарей
-        и составляет список из словарей с нужными ключами."""
-        # словарь из "сразу доступных" ключей-значений
-        final_dict_row = {
+        и составляет словарь с нужными ключами для одного ряда."""
+        final_dict_row = self._get_values_for_general_data(dct)
+        final_dict_row.update(self._get_values_for_custom_id(dct))
+        return final_dict_row
+
+    def _get_values_for_general_data(self, dct):
+        """Выбирает из json-a общие данные - id, создан, изменен и т.д."""
+        return {
             'id': dct.get('id'),
             'created_at': dct.get('created_at'),
             'amo_pipeline_id': dct.get('pipeline_id'),
@@ -83,19 +97,6 @@ class ParsingJSON:
             'amo_trashed_at': dct.get('trashed_at'),
             'amo_closed_at': dct.get('closed_at'),
         }
-        # добавляем ключи-значения из вложенных словарей
-        final_dict_row.update(
-            self._get_values_for_custom_id(dct))
-        # добавляем заполненный ряд в финальный словарь
-        self.final_dict_data.append(final_dict_row)
-
-        # TODO +1 оставлять ли None в финальной таблице или на что-то поменять?
-        # TODO +2 дописать ключи от вложенных словарей
-        # TODO 3 дописать обработку дат. При смещении старта недели
-        # попробовать доработать isocalendar()
-        # TODO 4 дописать отдельную фукцию для drupal_utm
-        # TODO 4 дописать проверку отсутствующих ключей-значений по заданию
-        # TODO 5 дописать логгер для события из TODO 4
 
     def _get_values_for_custom_id(self, dct):
         """Выбирает из текущих словарей значения для кастомных id.
@@ -123,6 +124,21 @@ class ParsingJSON:
             add_to_final_dict_row[key] = nested_dict.get(val)
         return add_to_final_dict_row
 
+    def _add_datetime_columns(self, dct):
+        """Добавляет колонки, вычисляемые из даты."""
+        pass
+
+    def _get_utm(self, dct):
+        """Добавляет колонки, полученные при парсинге
+        utm-меток (ключ drupal_utm).
+        """
+        self._logger()
+        pass
+
+    def _logger(self):
+        """Ведёт лог ошибок парсинга utm-меток."""
+        pass
+
     def load(self):
         """Выгружает датафрейм в *.tsv файл."""
         tsv_columns = self.final_dict_data[0].keys()
@@ -140,5 +156,4 @@ a.extract()
 # print(a.json_file)
 a.transform()
 # print(a.final_dict)
-# print(a.final_dict_data)
 a.load()
