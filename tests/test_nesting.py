@@ -14,10 +14,14 @@ def test_custom_id(dct):
     init_settings = {
         'custom_id': {
             'column_name_1': 100,
-            'column_name_2': 200,
-            'column_name_3': 300
+            'column_name_3': 300,
+            'column_name_2': 200
         }
     }
     inst = ParsingJSON(init_settings=init_settings)
     key_values = inst._get_values_for_custom_id(dct)
-    assert key_values['column_name_1'] == '111'
+    assert key_values['column_name_1'] == '111', \
+        'Значение ключа values не соответствует названию колонки для кастомного id'  # noqa
+    column_names = list(key_values.keys())
+    assert column_names == ['column_name_1', 'column_name_3', 'column_name_2'], \
+        'Порядок названий колонок не соответствует появлению названий в init_settings'  # noqa
