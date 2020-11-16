@@ -63,14 +63,17 @@ class ParsingJSON:
     ]
     Далее, используя csv.DictWriter, собираем из этого списка *.tsv файл
     """
-    def __init__(self):
+    def __init__(self, init_settings=init_settings, json_file=None,
+                 json_file_name=json_file_name, tsv_file_name=tsv_file_name):
         self.init_settings = init_settings
         self.json_file = None
+        self.json_file_name = json_file_name
+        self.tsv_file_name = tsv_file_name
         self.final_dict_data = []
 
     def extract(self):
         """Считывает исходный json-файл."""
-        with open(json_file_name, 'r') as json_file:
+        with open(self.json_file_name, 'r') as json_file:
             self.json_file = json.load(json_file)
 
     def transform(self):
@@ -120,7 +123,7 @@ class ParsingJSON:
         # выбираем из временного словаря nested_dict только ключи,
         # указанные в 'custom_id' в init_settings с сохранением порядка
         add_to_final_dict_row = {}
-        for key, val in init_settings['custom_id'].items():
+        for key, val in self.init_settings['custom_id'].items():
             add_to_final_dict_row[key] = nested_dict.get(val)
         return add_to_final_dict_row
 
@@ -142,7 +145,7 @@ class ParsingJSON:
     def load(self):
         """Выгружает датафрейм в *.tsv файл."""
         tsv_columns = self.final_dict_data[0].keys()
-        with open(tsv_file_name, 'w') as tsvfile:
+        with open(self.tsv_file_name, 'w') as tsvfile:
             writer = csv.DictWriter(
                 tsvfile, fieldnames=tsv_columns, dialect='excel-tab')
             writer.writeheader()

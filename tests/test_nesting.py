@@ -1,47 +1,23 @@
-"""
-Тестирование корректности получения значений из вложенных
-словарей с кастомными id.
-"""
 from parsing import ParsingJSON
-import pytest
 
 
-@pytest.fixture()
-def dct():
-    return {
-        "id": 1234,
-        "status_id": 1234,
-        "pipeline_id": 1234,
-        "created_at": 1234,
-        "updated_at": 1234,
-        "closed_at": 1234,
-        "custom_fields_values": [
-            {
-                "field_id": 100,
-                "values": [
-                    {"value": "111"},
-                ],
-            },
-            {
-                "field_id": 200,
-                "values": [
-                    {"value": "222"},
-                ],
-            },
-            {
-                "field_id": 300,
-                "values": [
-                    {"value": "333"},
-                ],
-            },
-        ],
-        "trashed_at": 1234,
+def test_custom_id(dct):
+    """
+    Тестирование корректности получения значений из вложенных
+    словарей с кастомными id.
+
+    В init_settings даны пары 'название колонки': кастомный_id. В json-e есть
+    словари, у которых значения field_id совпадают с кастомным_id. У таких
+    словарей нужно взять значение для ключа values. Тест проверяет, что в
+    итоговой колонке будет значение ключа values.
+    """
+    init_settings = {
+        'custom_id': {
+            'column_name_1': 100,
+            'column_name_2': 200,
+            'column_name_3': 300
+        }
     }
-
-a = dct
-print(a)
-
-def test_custom_id():
-    inst = ParsingJSON()
-    inst._get_values_for_custom_id(dct)
-    assert inst.final_dict_data == 1
+    inst = ParsingJSON(init_settings=init_settings)
+    key_values = inst._get_values_for_custom_id(dct)
+    assert key_values['column_name_1'] == '111'

@@ -3,6 +3,7 @@ import pytest
 
 @pytest.fixture
 def dct():
+    """Словаря для тестирования воспроизводит фрагмент структуры json-а."""
     return {
         "id": 1234,
         "status_id": 1234,
@@ -14,19 +15,28 @@ def dct():
             {
                 "field_id": 100,
                 "values": [
-                    {"value": "111"},
+                    {
+                        "value": "111",
+                        "enum_id": 1000
+                    },
                 ],
             },
             {
                 "field_id": 200,
                 "values": [
-                    {"value": "222"},
+                    {
+                        "value": "222",
+                        "enum_id": 1000
+                    },
                 ],
             },
             {
                 "field_id": 300,
                 "values": [
-                    {"value": "333"},
+                    {
+                        "value": "333",
+                        "enum_id": 1000
+                    },
                 ],
             },
         ],
