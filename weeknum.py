@@ -41,25 +41,12 @@ class CustomizedCalendar:
             date -= timedelta(days=7)
             correct = self._get_week_start(date)
         # первая неделя для следующего года
-        next_year = datetime(
-            correct.year + 1,
-            correct.month,
-            correct.day - 1,
-            correct.hour,
-            correct.minute,
-        )
+        next_year = self._get_week_start(datetime(date.year + 1, 1, 1))
         if date >= next_year:
-            correct = self._get_week_start(next_year + timedelta(days=7))
+            correct = next_year
         return correct
 
     def calculate(self, date):
         diff_days = (date - self.get_correct_week_start(date)).total_seconds()
         sec_in_week = 7 * 60 * 60 * 24
         return int(diff_days // sec_in_week) + 1
-
-
-inst = CustomizedCalendar('ПТ 18:30')
-print(inst.calculate(datetime(2019, 12, 27, 18, 29)))
-print(inst.calculate(datetime(2019, 12, 27, 18, 30)))
-print(inst.calculate(datetime(2020, 1, 3, 18, 29)))
-print(inst.calculate(datetime(2020, 1, 3, 18, 30)))
