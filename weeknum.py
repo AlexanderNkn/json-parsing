@@ -11,25 +11,55 @@ class CustomizedCalendar:
         self.start_hour = int(self.start_week.split()[1].split(':')[0])
         self.start_min = int(self.start_week.split()[1].split(':')[1])
 
-    def get_week_start(self, date):
-        delta = date.isoweekday() - self.start_weekday
-        return date - timedelta(
-            days=delta % 7, hours=self.start_hour, minutes=self.start_min
+    def _get_week_start(self, date):
+        """Метод получает дату старта первой недели.
+
+        Находим дату первого четверга в году и отнимаем от нее разницу
+        между четвергом в неделе и новым стартом недели."""
+        year = date.year
+        first_th = datetime.fromisocalendar(year, 1, 4)
+        delta = timedelta(days=4) - timedelta(
+            days=self.start_weekday,
+            hours=self.start_hour,
+            minutes=self.start_min,
         )
+        # доп. проверка, чтобы старт всегда был раньше четверга
+        if delta.total_seconds() >= 0:
+            return first_th - delta
+        return first_th - (timedelta(days=7) + delta)
 
-    def get_week_indicator(self, date):
-        week_start = self.get_week_start(date)
-        return week_start + timedelta(days=3)
+    def get_correct_week_start(self, date):
+        """Две проверки
 
-    def get_first_week(self, year):
-        indicator_date = self.get_week_indicator(datetime(year, 1, 1))
-        if indicator_date.year == year:  # The date "year.1.1" is on 1st week.
-            return self.get_week_start(datetime(year, 1, 1))
-        else:  # The date "year.1.1" is on the last week of "year-1".
-            return self.get_week_start(datetime(year, 1, 8))
+        1. Если проверяемая дата идет раньше начала первой недели в году,
+        нужно сделать перерассчет так, чтобы первая неделя начиналась
+        год назад
+        2. Последние несколько дней могут входить в первую неделю
+        следующего года."""
+        correct = self._get_week_start(date)
+        if date < correct:
+            date -= timedelta(days=7)
+            correct = self._get_week_start(date)
+        # первая неделя для следующего года
+        next_year = datetime(
+            correct.year + 1,
+            correct.month,
+            correct.day - 1,
+            correct.hour,
+            correct.minute,
+        )
+        if date >= next_year:
+            correct = self._get_week_start(next_year + timedelta(days=7))
+        return correct
 
     def calculate(self, date):
-        year = self.get_week_indicator(date).year
-        first_date_of_first_week = self.get_first_week(year)
-        diff_days = (date - first_date_of_first_week).days
-        return diff_days // 7 + 1
+        diff_days = (date - self.get_correct_week_start(date)).total_seconds()
+        sec_in_week = 7 * 60 * 60 * 24
+        return int(diff_days // sec_in_week) + 1
+
+
+inst = CustomizedCalendar('ПТ 18:30')
+print(inst.calculate(datetime(2019, 12, 27, 18, 29)))
+print(inst.calculate(datetime(2019, 12, 27, 18, 30)))
+print(inst.calculate(datetime(2020, 1, 3, 18, 29)))
+print(inst.calculate(datetime(2020, 1, 3, 18, 30)))

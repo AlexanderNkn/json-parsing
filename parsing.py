@@ -26,7 +26,7 @@ json_file_name = os.path.join(dirname, 'amo_json_2020_40.json')
 tsv_file_name = os.path.join(dirname, 'final_table.tsv')
 init_settings = {
     'date_format': None,  # выбор формата даты !!! не подключено
-    'start_week': 'ПТ 18:00',  # смещение начала недели !!! не подключено
+    'start_week': 'ПТ 18:00',
     'custom_id': {
         'amo_city_id': 512318,
         'drupal_utm': 632884,
