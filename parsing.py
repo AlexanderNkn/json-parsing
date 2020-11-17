@@ -1,16 +1,18 @@
 # TODO +1 оставлять ли None в финальной таблице или на что-то поменять?
 # TODO +2 дописать ключи от вложенных словарей
 # TODO тесты
-# TODO 3 дописать обработку дат. При смещении старта недели
+# TODO +-3 дописать обработку дат. При смещении старта недели
 # попробовать доработать isocalendar()
 # TODO 4 дописать отдельную фукцию для drupal_utm
 # TODO 4 дописать проверку отсутствующих ключей-значений по заданию
 # TODO 5 дописать логгер для события из TODO 4
 
 import csv
+import datetime as dt
 import json
 import os
 
+from weeknum import CustomizedCalendar
 # исходные настройки парсера можно импортировать из другого файла,
 # для этого нужно назвать их ext_settings и указать путь до файла
 try:
@@ -24,7 +26,7 @@ json_file_name = os.path.join(dirname, 'amo_json_2020_40.json')
 tsv_file_name = os.path.join(dirname, 'final_table.tsv')
 init_settings = {
     'date_format': None,  # выбор формата даты !!! не подключено
-    'start_week': None,  # смещение начала недели !!! не подключено
+    'start_week': 'ПТ 18:00',  # смещение начала недели !!! не подключено
     'custom_id': {
         'amo_city_id': 512318,
         'drupal_utm': 632884,
@@ -87,6 +89,7 @@ class ParsingJSON:
         и составляет словарь с нужными ключами для одного ряда."""
         final_dict_row = self._get_values_for_general_data(dct)
         final_dict_row.update(self._get_values_for_custom_id(dct))
+        final_dict_row.update(self._add_datetime_columns(dct))
         return final_dict_row
 
     def _get_values_for_general_data(self, dct):
@@ -129,7 +132,20 @@ class ParsingJSON:
 
     def _add_datetime_columns(self, dct):
         """Добавляет колонки, вычисляемые из даты."""
-        pass
+        created_at = dct.get('created_at')
+        full_date = dt.datetime.fromtimestamp(created_at)
+        return {
+            'created_at_bq_timestamp': full_date,
+            'created_at_year': full_date.year,
+            'created_a_month': full_date.month,
+            'created_at_week': self._weeknum(full_date)
+        }
+
+    def _weeknum(self, date):
+        """Высчитывает номер недели для недель с нестандартным началом."""
+        start_week = self.init_settings.get('start_week', 'ПТ 18:00')
+        inst = CustomizedCalendar(start_week)
+        return inst.calculate(date)
 
     def _get_utm(self, dct):
         """Добавляет колонки, полученные при парсинге
@@ -160,3 +176,5 @@ a.extract()
 a.transform()
 # print(a.final_dict)
 a.load()
+
+dt.date.isocalendar
