@@ -8,6 +8,8 @@ import datetime as dt
 import json
 import os
 
+from loguru import logger
+
 from weeknum import CustomizedCalendar
 # исходные настройки парсера можно импортировать из другого файла,
 # для этого нужно назвать их ext_settings и указать путь до файла
@@ -21,7 +23,7 @@ dirname = os.path.dirname(os.path.abspath(__file__))
 json_file_name = os.path.join(dirname, 'amo_json_2020_40.json')
 tsv_file_name = os.path.join(dirname, 'final_table.tsv')
 init_settings = {
-    'date_format': None,  # выбор формата даты !!! не подключено
+    'date_format': '%Y-%m-%d %H:%M:%S',
     'start_week': 'ПТ 18:00',
     'custom_id': {
         'amo_city_id': 512318,
@@ -130,8 +132,10 @@ class ParsingJSON:
         """Добавляет колонки, вычисляемые из даты."""
         created_at = dct.get('created_at')
         full_date = dt.datetime.fromtimestamp(created_at)
+        date_format = self.init_settings.get(
+            'date_format', '%Y-%m-%d %H:%M:%S')
         return {
-            'created_at_bq_timestamp': full_date,
+            'created_at_bq_timestamp': full_date.strftime(date_format),
             'created_at_year': full_date.year,
             'created_a_month': full_date.month,
             'created_at_week': self._weeknum(full_date)
@@ -147,12 +151,14 @@ class ParsingJSON:
         """Добавляет колонки, полученные при парсинге
         utm-меток (ключ drupal_utm).
         """
-        self._logger()
+        message = 'привет'
+        self._logger(message)
         pass
 
-    def _logger(self):
+    def _logger(self, message):
         """Ведёт лог ошибок парсинга utm-меток."""
-        pass
+        logger.add('info.log')
+        logger.info(message)
 
     def load(self):
         """Выгружает датафрейм в *.tsv файл."""
@@ -166,9 +172,6 @@ class ParsingJSON:
 
 
 a = ParsingJSON()
-# print(a)
 a.extract()
-# print(a.json_file)
 a.transform()
-# print(a.final_dict)
 a.load()
