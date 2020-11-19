@@ -131,3 +131,4 @@ dmypy.json
 # Custom
 .vscode/
 final_table.tsv
+scratches/
