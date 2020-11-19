@@ -72,6 +72,9 @@ class ParsingJSON:
             'amo_status_id': source_row['status_id'],
             'amo_pipeline_id': source_row['pipeline_id'],
 
+            'amo_city': custom_field_values.get(
+                self.CONFIG['CITY_FIELD_ID']),
+
             'drupal_utm': custom_field_values.get(
                 self.CONFIG['DRUPAL_UTM_FIELD_ID']),
 
