@@ -19,7 +19,7 @@ def test_custom_id(dct):
         }
     }
     inst = ParsingJSON(test_config)
-    key_values = inst._get_values_for_custom_id(dct)
+    key_values = inst.transform_row(dct)
     assert key_values['column_name_1'] == '111', \
         'Значение ключа values не соответствует названию колонки для кастомного id'  # noqa
     column_names = list(key_values.keys())

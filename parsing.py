@@ -17,27 +17,24 @@ class ParsingJSON:
     """
 
     CONFIG = {
-        'time_format': '%Y-%m-%d %H:%M:%S',
-        'start_week': 'ПТ 18:00',
-        'custom_id': {
-            'amo_city_id': 512318,
-            'drupal_utm': 632884,
-            'tilda_utm_source': 648158,
-            'tilda_utm_source': 648158,
-            'tilda_utm_medium': 648160,
-            'tilda_utm_campaign': 648310,
-            'tilda_utm_content': 648312,
-            'tilda_utm_term': 648314,
-            'ct_utm_source': 648256,
-            'ct_utm_medium': 648258,
-            'ct_utm_campaign': 648260,
-            'ct_utm_content': 648262,
-            'ct_utm_term': 648264,
-            'ct_type_communication': 648220,
-            'ct_device': 648276,
-            'ct_os': 648278,
-            'ct_browser': 648280,
-        },
+        'TIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+        'WEEK_OFFSET': 'ПТ 18:00',
+        'CITY_FIELD_ID': 512318,
+        'DRUPAL_UTM_FIELD_ID': 632884,
+        'TILDA_UTM_SOURCE_FIELD_ID': 648158,
+        'TILDA_UTM_MEDIUM_FIELD_ID': 648160,
+        'TILDA_UTM_CAMPAIGN_FIELD_ID': 648310,
+        'TILDA_UTM_CONTENT_FIELD_ID': 648312,
+        'TILDA_UTM_TERM_FIELD_ID': 648314,
+        'CT_UTM_SOURCE_FIELD_ID': 648256,
+        'CT_UTM_MEDIUM_FIELD_ID': 648258,
+        'CT_UTM_CAMPAIGN_FIELD_ID': 648260,
+        'CT_UTM_CONTENT_FIELD_ID': 648262,
+        'CT_UTM_TERM_FIELD_ID': 648264,
+        'CT_TYPE_COMMUNICATION_FIELD_ID': 648220,
+        'CT_DEVICE_FIELD_ID': 648276,
+        'CT_OS_FIELD_ID': 648278,
+        'CT_BROWSER_FIELD_ID': 648280,
     }
 
     def __init__(self, config=None):
@@ -46,7 +43,7 @@ class ParsingJSON:
             self.CONFIG.update(config)
         else:
             self.CONFIG.update(ParsingJSON.CONFIG)
-        self.final_dict_data = []
+        self.final_data = []
 
     def extract(self, json_file_name):
         """Считывает исходный json-файл."""
@@ -56,66 +53,84 @@ class ParsingJSON:
     def transform(self):
         """Формирует финальный набор данных для выгрузки в *.tsv."""
         if self.json_file:
-            for dct in self.json_file:
-                self.final_dict_data.append(self._transform_row(dct))
+            for row in self.json_file:
+                self.final_data.append(self.transform_row(row))
 
-    def _transform_row(self, dct):
+    def transform_row(self, source_row):
         """Выбирает ключи и значения из текущих словарей
         и составляет словарь с нужными ключами для одного ряда."""
-        final_dict_row = self._get_values_for_general_data(dct)
-        final_dict_row.update(self._get_values_for_custom_id(dct))
-        final_dict_row.update(self._add_datetime_columns(dct))
-        return final_dict_row
+        custom_field_values = self._get_custom_field_value_by_id(source_row)
+        created_at_datetime = dt.datetime.fromtimestamp(
+            source_row['created_at'])
 
-    def _get_values_for_general_data(self, dct):
-        """Выбирает из json-a общие данные - id, создан, изменен и т.д."""
         return {
-            'id': dct.get('id'),
-            'created_at': dct.get('created_at'),
-            'amo_pipeline_id': dct.get('pipeline_id'),
-            'amo_status_id': dct.get('status_id'),
-            'amo_updated_at': dct.get('updated_at'),
-            'amo_trashed_at': dct.get('trashed_at'),
-            'amo_closed_at': dct.get('closed_at'),
+            'id': source_row['id'],
+            'created_at': source_row['created_at'],
+            'amo_updated_at': source_row.get('updated_at'),
+            'amo_trashed_at': source_row.get('trashed_at'),
+            'amo_closed_at': source_row.get('closed_at'),
+            'amo_status_id': source_row['status_id'],
+            'amo_pipeline_id': source_row['pipeline_id'],
+
+            'drupal_utm': custom_field_values.get(
+                self.CONFIG['DRUPAL_UTM_FIELD_ID']),
+
+            'tilda_utm_source': custom_field_values.get(
+                self.CONFIG['TILDA_UTM_SOURCE_FIELD_ID']),
+
+            'tilda_utm_medium': custom_field_values.get(
+                self.CONFIG['TILDA_UTM_MEDIUM_FIELD_ID']),
+
+            'tilda_utm_campaign': custom_field_values.get(
+                self.CONFIG['TILDA_UTM_CAMPAIGN_FIELD_ID']),
+
+            'tilda_utm_content': custom_field_values.get(
+                self.CONFIG['TILDA_UTM_CONTENT_FIELD_ID']),
+
+            'tilda_utm_term': custom_field_values.get(
+                self.CONFIG['TILDA_UTM_TERM_FIELD_ID']),
+
+            'ct_utm_source': custom_field_values.get(
+                self.CONFIG['CT_UTM_SOURCE_FIELD_ID']),
+
+            'ct_utm_medium': custom_field_values.get(
+                self.CONFIG['CT_UTM_MEDIUM_FIELD_ID']),
+
+            'ct_utm_campaign': custom_field_values.get(
+                self.CONFIG['CT_UTM_CAMPAIGN_FIELD_ID']),
+
+            'ct_utm_content': custom_field_values.get(
+                self.CONFIG['CT_UTM_CONTENT_FIELD_ID']),
+
+            'ct_utm_term': custom_field_values.get(
+                self.CONFIG['CT_UTM_TERM_FIELD_ID']),
+
+            'ct_type_communication': custom_field_values.get(
+                self.CONFIG['CT_TYPE_COMMUNICATION_FIELD_ID']),
+
+            'ct_device': custom_field_values.get(
+                self.CONFIG['CT_DEVICE_FIELD_ID']),
+
+            'ct_os': custom_field_values.get(self.CONFIG['CT_OS_FIELD_ID']),
+
+            'ct_browser': custom_field_values.get(
+                self.CONFIG['CT_BROWSER_FIELD_ID']),
+
+            'created_at_bq_timestamp': created_at_datetime.strftime(
+                self.CONFIG['TIME_FORMAT']),
+            'created_at_year': created_at_datetime.year,
+            'created_at_month': created_at_datetime.month,
+            'created_at_week': self._weeknum(created_at_datetime),
         }
 
-    def _get_values_for_custom_id(self, dct):
-        """Выбирает из текущих словарей значения для кастомных id.
-
-        Значение 'custom_fields_values' представляет собой список словарей.
-        Так как нам нужно сопоставить только значение 'field_id' из каждого
-        словаря со словарем 'custom_id' в config, сохранив при этом
-        порядок, создадим промежуточный словарь вида:
-        {
-            key1: value1,
-            key2: value2,
-            ...
-        }
-        ,где key1 - это значения ключа 'field_id', а value1 - это значение для
-        ключа 'values' из вложенного словаря, которому принадлежит 'field_id'.
-        """
-        nested_dict = {}
-        custom_fields_list = dct['custom_fields_values']
-        for item in custom_fields_list:
-            nested_dict[item['field_id']] = item['values'][0]['value']
-        # выбираем из временного словаря nested_dict только ключи,
-        # указанные в 'custom_id' в config с сохранением порядка
-        add_to_final_dict_row = {}
-        for key, val in self.CONFIG['custom_id'].items():
-            add_to_final_dict_row[key] = nested_dict.get(val)
-        return add_to_final_dict_row
-
-    def _add_datetime_columns(self, dct):
-        """Добавляет колонки, вычисляемые из даты."""
-        created_at = dct.get('created_at')
-        full_date = dt.datetime.fromtimestamp(created_at)
-        time_format = self.CONFIG['time_format']
-        return {
-            'created_at_bq_timestamp': full_date.strftime(time_format),
-            'created_at_year': full_date.year,
-            'created_a_month': full_date.month,
-            'created_at_week': self._weeknum(full_date),
-        }
+    def _get_custom_field_value_by_id(self, source_row):
+        """Подготавливает словарь из кастомных id и соответствующих
+        им значений."""
+        if 'custom_fields_values' in source_row:
+            custom_fields_dict = {}
+            for field in source_row['custom_fields_values']:
+                custom_fields_dict[field['field_id']] = field['values'][0].get('value')  # noqa
+        return custom_fields_dict
 
     def _weeknum(self, date):
         """Высчитывает номер недели для недель с нестандартным началом."""
@@ -123,11 +138,11 @@ class ParsingJSON:
         inst = CustomizedCalendar(start_week)
         return inst.calculate(date)
 
-    def _get_utm(self, dct):
+    def _get_lead_utm_source(self, result_row):
         """Добавляет колонки, полученные при парсинге
         utm-меток (ключ drupal_utm).
         """
-        message = 'привет'
+        message = ''
         self._logger(message)
         pass
 
@@ -138,19 +153,19 @@ class ParsingJSON:
 
     def load(self, tsv_file_name):
         """Выгружает датафрейм в *.tsv файл."""
-        tsv_columns = self.final_dict_data[0].keys()
+        tsv_columns = self.final_data[0].keys()
         with open(tsv_file_name, 'w') as tsvfile:
             writer = csv.DictWriter(
                 tsvfile, fieldnames=tsv_columns, dialect='excel-tab'
             )
             writer.writeheader()
-            for data in self.final_dict_data:
+            for data in self.final_data:
                 writer.writerow(data)
 
 
 if __name__ == "__main__":
     dirname = os.path.dirname(os.path.abspath(__file__))
-    json_file_name = os.path.join(dirname, 'amo_json_2020_40.json')
+    json_file_name = os.path.join(dirname, 'tests', 'amo_json_2020_40.json')
     tsv_file_name = os.path.join(dirname, 'final_table.tsv')
 
     a = ParsingJSON()
