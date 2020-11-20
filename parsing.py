@@ -5,8 +5,6 @@ import os
 
 from loguru import logger
 
-from weeknum import CustomizedCalendar
-
 
 class ParsingJSON:
     """
@@ -18,7 +16,7 @@ class ParsingJSON:
 
     CONFIG = {
         'TIME_FORMAT': '%Y-%m-%d %H:%M:%S',
-        'WEEK_OFFSET': 'ПТ 18:00',
+        'WEEK_OFFSET': dt.timedelta(hours=24 + 24 + 6),
         'CITY_FIELD_ID': 512318,
         'DRUPAL_UTM_FIELD_ID': 632884,
         'TILDA_UTM_SOURCE_FIELD_ID': 648158,
@@ -63,7 +61,7 @@ class ParsingJSON:
         created_at_datetime = dt.datetime.fromtimestamp(
             source_row['created_at'])
 
-        return {
+        result_row = {
             'id': source_row['id'],
             'created_at': source_row['created_at'],
             'amo_updated_at': source_row.get('updated_at'),
@@ -123,31 +121,67 @@ class ParsingJSON:
                 self.CONFIG['TIME_FORMAT']),
             'created_at_year': created_at_datetime.year,
             'created_at_month': created_at_datetime.month,
-            'created_at_week': self._weeknum(created_at_datetime),
+            'created_at_week': ((created_at_datetime + self.CONFIG['WEEK_OFFSET'])  # noqa
+                                .isocalendar()[1]),
         }
+        result_row_add = {
+            'lead_utm_source': self._get_lead_utm_source(result_row),
+        }
+        self._check_utm(result_row, result_row_add)
+        result_row.update(result_row_add)
+        return result_row
 
     def _get_custom_field_value_by_id(self, source_row):
         """Подготавливает словарь из кастомных id и соответствующих
-        им значений."""
+        им значений.
+
+        По логике предполагается многократный поиск элемента в списке
+        source_row. Чтобы уменьшить сложность операции, при первом проходе
+        по списку собираем словарь. И в дальнейшем ведем поиск по словарю
+        за константное время."""
         if 'custom_fields_values' in source_row:
             custom_fields_dict = {}
             for field in source_row['custom_fields_values']:
                 custom_fields_dict[field['field_id']] = field['values'][0].get('value')  # noqa
         return custom_fields_dict
 
-    def _weeknum(self, date):
-        """Высчитывает номер недели для недель с нестандартным началом."""
-        start_week = self.CONFIG.get('start_week', 'ПТ 18:00')
-        inst = CustomizedCalendar(start_week)
-        return inst.calculate(date)
-
     def _get_lead_utm_source(self, result_row):
         """Добавляет колонки, полученные при парсинге
         utm-меток (ключ drupal_utm).
         """
-        message = ''
-        self._logger(message)
-        pass
+        if result_row['drupal_utm']:
+            drupal_utm_list = result_row['drupal_utm'].split(', ')
+            drupal_utm_dict = dict([
+                item.split('=') for item in drupal_utm_list])
+
+            if 'source' not in drupal_utm_dict:
+                if result_row['ct_utm_source']:
+                    return result_row['ct_utm_source']
+                return result_row['tilda_utm_source']
+
+            source = result_row['ct_utm_source']
+            medium = result_row.get('medium')
+            if source == 'yandex' or medium == 'yandex':
+                return 'yandex'
+            if source == 'google' or medium == 'google':
+                return 'google'
+            return source
+
+    def _check_utm(self, result_row, result_row_add):
+        if (
+            result_row['ct_utm_source']
+            and (
+                result_row['ct_utm_source']
+                != result_row_add['lead_utm_source']
+            )
+        ) or (
+            result_row['tilda_utm_source']
+            and (
+                result_row['tilda_utm_source']
+                != result_row_add['lead_utm_source']
+            )
+        ):
+            self._logger(f"Конфликт utm_source в сделке {result_row['id']}")
 
     def _logger(self, message):
         """Ведёт лог ошибок парсинга utm-меток."""
