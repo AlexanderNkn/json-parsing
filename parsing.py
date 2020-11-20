@@ -41,18 +41,18 @@ class ParsingJSON:
             self.CONFIG.update(config)
         else:
             self.CONFIG.update(ParsingJSON.CONFIG)
-        self.final_data = []
 
     def extract(self, json_file_name):
         """Считывает исходный json-файл."""
         with open(json_file_name, 'r') as json_file:
-            self.json_file = json.load(json_file)
+            return json.load(json_file)
 
-    def transform(self):
+    def transform(self, source_data):
         """Формирует финальный набор данных для выгрузки в *.tsv."""
-        if self.json_file:
-            for row in self.json_file:
-                self.final_data.append(self.transform_row(row))
+        result_rows = []
+        for row in source_data:
+            result_rows.append(self.transform_row(row))
+        return result_rows
 
     def transform_row(self, source_row):
         """Выбирает ключи и значения из текущих словарей
@@ -210,15 +210,15 @@ class ParsingJSON:
         logger.add('info.log')
         logger.info(message)
 
-    def load(self, tsv_file_name):
+    def load(self, result_rows, tsv_file_name):
         """Выгружает датафрейм в *.tsv файл."""
-        tsv_columns = self.final_data[0].keys()
+        tsv_columns = result_rows[0].keys()
         with open(tsv_file_name, 'w') as tsvfile:
             writer = csv.DictWriter(
                 tsvfile, fieldnames=tsv_columns, dialect='excel-tab'
             )
             writer.writeheader()
-            for data in self.final_data:
+            for data in result_rows:
                 writer.writerow(data)
 
 
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     json_file_name = os.path.join(dirname, 'tests', 'amo_json_2020_40.json')
     tsv_file_name = os.path.join(dirname, 'final_table.tsv')
 
-    a = ParsingJSON()
-    a.extract(json_file_name)
-    a.transform()
-    a.load(tsv_file_name)
+    week_parser = ParsingJSON()
+    source_data = week_parser.extract(json_file_name)
+    result_rows = week_parser.transform(source_data)
+    week_parser.load(result_rows, tsv_file_name)
