@@ -125,7 +125,11 @@ class ParsingJSON:
                                 .isocalendar()[1]),
         }
         result_row_add = {
-            'lead_utm_source': self._get_lead_utm_source(result_row),
+            'lead_utm_source': self._get_lead_utm(result_row, 'source'),
+            'lead_utm_medium': self._get_lead_utm(result_row, 'medium'),
+            'lead_utm_campaign': self._get_lead_utm(result_row, 'campaign'),
+            'lead_utm_content': self._get_lead_utm(result_row, 'content'),
+            'lead_utm_term': self._get_lead_utm(result_row, 'keyword'),
         }
         self._check_utm(result_row, result_row_add)
         result_row.update(result_row_add)
@@ -145,7 +149,7 @@ class ParsingJSON:
                 custom_fields_dict[field['field_id']] = field['values'][0].get('value')  # noqa
         return custom_fields_dict
 
-    def _get_lead_utm_source(self, result_row):
+    def _get_lead_utm(self, result_row, param):
         """Добавляет колонки, полученные при парсинге
         utm-меток (ключ drupal_utm).
         """
@@ -154,18 +158,31 @@ class ParsingJSON:
             drupal_utm_dict = dict([
                 item.split('=') for item in drupal_utm_list])
 
-            if 'source' not in drupal_utm_dict:
-                if result_row['ct_utm_source']:
-                    return result_row['ct_utm_source']
-                return result_row['tilda_utm_source']
+            source = drupal_utm_dict.get('source')
+            medium = drupal_utm_dict.get('medium')
+            if param == 'keyword':
+                ct_key = 'ct_utm_term'
+                tilda_key = 'tilda_utm_term'
+            else:
+                ct_key = 'ct_utm_' + param
+                tilda_key = 'tilda_utm_' + param
 
-            source = result_row['ct_utm_source']
-            medium = result_row.get('medium')
-            if source == 'yandex' or medium == 'yandex':
-                return 'yandex'
-            if source == 'google' or medium == 'google':
-                return 'google'
-            return source
+            if param not in drupal_utm_dict:
+                if result_row[ct_key]:
+                    return result_row[ct_key]
+                return result_row[tilda_key]
+
+            if param == 'source':
+                if source == 'yandex' or medium == 'yandex':
+                    return 'yandex'
+                if source == 'google' or medium == 'google':
+                    return 'google'
+
+            if param == 'medium':
+                if source == 'context' or medium == 'context':
+                    return 'context'
+
+            return drupal_utm_dict[param]
 
     def _check_utm(self, result_row, result_row_add):
         if (
