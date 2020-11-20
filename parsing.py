@@ -156,6 +156,13 @@ class ParsingJSON:
         """Добавляет колонки, полученные при парсинге
         utm-меток (ключ drupal_utm).
         """
+        if param == 'keyword':
+            ct_key = 'ct_utm_term'
+            tilda_key = 'tilda_utm_term'
+        else:
+            ct_key = 'ct_utm_' + param
+            tilda_key = 'tilda_utm_' + param
+
         if result_row['drupal_utm']:
             drupal_utm_list = result_row['drupal_utm'].split(', ')
             drupal_utm_dict = dict(
@@ -164,17 +171,10 @@ class ParsingJSON:
 
             source = drupal_utm_dict.get('source')
             medium = drupal_utm_dict.get('medium')
-            if param == 'keyword':
-                ct_key = 'ct_utm_term'
-                tilda_key = 'tilda_utm_term'
-            else:
-                ct_key = 'ct_utm_' + param
-                tilda_key = 'tilda_utm_' + param
 
             if param not in drupal_utm_dict:
                 if result_row[ct_key]:
                     return result_row[ct_key]
-                return result_row[tilda_key]
 
             if param == 'source':
                 if source == 'yandex' or medium == 'yandex':
@@ -187,6 +187,7 @@ class ParsingJSON:
                     return 'context'
 
             return drupal_utm_dict[param]
+        return result_row[tilda_key]
 
     def _check_utm(self, result_row, result_row_add):
 
