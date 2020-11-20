@@ -4,6 +4,7 @@ import json
 import os
 
 from loguru import logger
+logger.add('info.log', format='{time} {level} {message}', level='INFO')
 
 
 class ParsingJSON:
@@ -202,14 +203,9 @@ class ParsingJSON:
                 result_row[tilda_key]
                 and (result_row[tilda_key] != result_row_add[key])
             ):
-                self._logger(
+                logger.info(
                     f"Конфликт {'utm_' + param} в сделке {result_row['id']}"
                 )
-
-    def _logger(self, message):
-        """Ведёт лог ошибок парсинга utm-меток."""
-        logger.add('info.log')
-        logger.info(message)
 
     def load(self, result_rows, tsv_file_name):
         """Выгружает датафрейм в *.tsv файл."""
