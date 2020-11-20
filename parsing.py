@@ -59,7 +59,8 @@ class ParsingJSON:
         и составляет словарь с нужными ключами для одного ряда."""
         custom_field_values = self._get_custom_field_value_by_id(source_row)
         created_at_datetime = dt.datetime.fromtimestamp(
-            source_row['created_at'])
+            source_row['created_at']
+        )
 
         result_row = {
             'id': source_row['id'],
@@ -69,60 +70,60 @@ class ParsingJSON:
             'amo_closed_at': source_row.get('closed_at'),
             'amo_status_id': source_row['status_id'],
             'amo_pipeline_id': source_row['pipeline_id'],
-
-            'amo_city': custom_field_values.get(
-                self.CONFIG['CITY_FIELD_ID']),
-
+            'amo_city': custom_field_values.get(self.CONFIG['CITY_FIELD_ID']),
             'drupal_utm': custom_field_values.get(
-                self.CONFIG['DRUPAL_UTM_FIELD_ID']),
-
+                self.CONFIG['DRUPAL_UTM_FIELD_ID']
+            ),
             'tilda_utm_source': custom_field_values.get(
-                self.CONFIG['TILDA_UTM_SOURCE_FIELD_ID']),
-
+                self.CONFIG['TILDA_UTM_SOURCE_FIELD_ID']
+            ),
             'tilda_utm_medium': custom_field_values.get(
-                self.CONFIG['TILDA_UTM_MEDIUM_FIELD_ID']),
-
+                self.CONFIG['TILDA_UTM_MEDIUM_FIELD_ID']
+            ),
             'tilda_utm_campaign': custom_field_values.get(
-                self.CONFIG['TILDA_UTM_CAMPAIGN_FIELD_ID']),
-
+                self.CONFIG['TILDA_UTM_CAMPAIGN_FIELD_ID']
+            ),
             'tilda_utm_content': custom_field_values.get(
-                self.CONFIG['TILDA_UTM_CONTENT_FIELD_ID']),
-
+                self.CONFIG['TILDA_UTM_CONTENT_FIELD_ID']
+            ),
             'tilda_utm_term': custom_field_values.get(
-                self.CONFIG['TILDA_UTM_TERM_FIELD_ID']),
-
+                self.CONFIG['TILDA_UTM_TERM_FIELD_ID']
+            ),
             'ct_utm_source': custom_field_values.get(
-                self.CONFIG['CT_UTM_SOURCE_FIELD_ID']),
-
+                self.CONFIG['CT_UTM_SOURCE_FIELD_ID']
+            ),
             'ct_utm_medium': custom_field_values.get(
-                self.CONFIG['CT_UTM_MEDIUM_FIELD_ID']),
-
+                self.CONFIG['CT_UTM_MEDIUM_FIELD_ID']
+            ),
             'ct_utm_campaign': custom_field_values.get(
-                self.CONFIG['CT_UTM_CAMPAIGN_FIELD_ID']),
-
+                self.CONFIG['CT_UTM_CAMPAIGN_FIELD_ID']
+            ),
             'ct_utm_content': custom_field_values.get(
-                self.CONFIG['CT_UTM_CONTENT_FIELD_ID']),
-
+                self.CONFIG['CT_UTM_CONTENT_FIELD_ID']
+            ),
             'ct_utm_term': custom_field_values.get(
-                self.CONFIG['CT_UTM_TERM_FIELD_ID']),
-
+                self.CONFIG['CT_UTM_TERM_FIELD_ID']
+            ),
             'ct_type_communication': custom_field_values.get(
-                self.CONFIG['CT_TYPE_COMMUNICATION_FIELD_ID']),
-
+                self.CONFIG['CT_TYPE_COMMUNICATION_FIELD_ID']
+            ),
             'ct_device': custom_field_values.get(
-                self.CONFIG['CT_DEVICE_FIELD_ID']),
-
+                self.CONFIG['CT_DEVICE_FIELD_ID']
+            ),
             'ct_os': custom_field_values.get(self.CONFIG['CT_OS_FIELD_ID']),
-
             'ct_browser': custom_field_values.get(
-                self.CONFIG['CT_BROWSER_FIELD_ID']),
-
+                self.CONFIG['CT_BROWSER_FIELD_ID']
+            ),
             'created_at_bq_timestamp': created_at_datetime.strftime(
-                self.CONFIG['TIME_FORMAT']),
+                self.CONFIG['TIME_FORMAT']
+            ),
             'created_at_year': created_at_datetime.year,
             'created_at_month': created_at_datetime.month,
-            'created_at_week': ((created_at_datetime + self.CONFIG['WEEK_OFFSET'])  # noqa
-                                .isocalendar()[1]),
+            'created_at_week': (
+                (
+                    created_at_datetime + self.CONFIG['WEEK_OFFSET']
+                ).isocalendar()[1]
+            ),
         }
         result_row_add = {
             'lead_utm_source': self._get_lead_utm(result_row, 'source'),
@@ -146,7 +147,9 @@ class ParsingJSON:
         if 'custom_fields_values' in source_row:
             custom_fields_dict = {}
             for field in source_row['custom_fields_values']:
-                custom_fields_dict[field['field_id']] = field['values'][0].get('value')  # noqa
+                custom_fields_dict[field['field_id']] = field['values'][0].get(
+                    'value'
+                )
         return custom_fields_dict
 
     def _get_lead_utm(self, result_row, param):
@@ -155,8 +158,9 @@ class ParsingJSON:
         """
         if result_row['drupal_utm']:
             drupal_utm_list = result_row['drupal_utm'].split(', ')
-            drupal_utm_dict = dict([
-                item.split('=') for item in drupal_utm_list])
+            drupal_utm_dict = dict(
+                [item.split('=') for item in drupal_utm_list]
+            )
 
             source = drupal_utm_dict.get('source')
             medium = drupal_utm_dict.get('medium')
@@ -185,20 +189,21 @@ class ParsingJSON:
             return drupal_utm_dict[param]
 
     def _check_utm(self, result_row, result_row_add):
-        if (
-            result_row['ct_utm_source']
-            and (
-                result_row['ct_utm_source']
-                != result_row_add['lead_utm_source']
-            )
-        ) or (
-            result_row['tilda_utm_source']
-            and (
-                result_row['tilda_utm_source']
-                != result_row_add['lead_utm_source']
-            )
-        ):
-            self._logger(f"Конфликт utm_source в сделке {result_row['id']}")
+
+        for key in result_row_add.keys():
+            param = key.split('_')[2]
+            ct_key = 'ct_utm_' + param
+            tilda_key = 'tilda_utm_' + param
+            if (
+                result_row[ct_key]
+                and (result_row[ct_key] != result_row_add[key])
+            ) or (
+                result_row[tilda_key]
+                and (result_row[tilda_key] != result_row_add[key])
+            ):
+                self._logger(
+                    f"Конфликт {'utm_' + param} в сделке {result_row['id']}"
+                )
 
     def _logger(self, message):
         """Ведёт лог ошибок парсинга utm-меток."""
