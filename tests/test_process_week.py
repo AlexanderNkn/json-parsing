@@ -20,3 +20,10 @@ def test_transform_row(week_transformer):
 
     assert result_row['id'] == 26895186
     assert result_row['amo_city'] == 'Брянск'
+
+    assert result_row['ct_utm_content'] == '<не заполнено>'
+    assert result_row['tilda_utm_content'] is None
+    assert result_row['lead_utm_content'] == 'cntx'
+
+    assert 'source=yandex' in result_row['drupal_utm']
+    assert result_row['lead_utm_source'] == 'yandex'
