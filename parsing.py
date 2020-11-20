@@ -4,6 +4,7 @@ import json
 import os
 
 from loguru import logger
+
 logger.add('info.log', format='{time} {level} {message}', level='INFO')
 
 
@@ -145,12 +146,11 @@ class ParsingJSON:
         source_row. Чтобы уменьшить сложность операции, при первом проходе
         по списку собираем словарь. И в дальнейшем ведем поиск по словарю
         за константное время."""
-        if 'custom_fields_values' in source_row:
-            custom_fields_dict = {}
-            for field in source_row['custom_fields_values']:
+        custom_fields_dict = {}
+        if source_row.get('custom_fields_values'):
+            for field in source_row.get('custom_fields_values'):
                 custom_fields_dict[field['field_id']] = field['values'][0].get(
-                    'value'
-                )
+                    'value')
         return custom_fields_dict
 
     def _get_lead_utm(self, result_row, param):

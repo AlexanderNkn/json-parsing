@@ -1,0 +1,2359 @@
+[
+  {
+    "id": 11235620,
+    "name": "Иван",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 544512,
+    "created_at": 1457939055,
+    "updated_at": 1519286409,
+    "closed_at": 1458224242,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11235620"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 23367776,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/23367776"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11240760,
+    "name": "Центр бизнес услуг",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1457956302,
+    "updated_at": 1535021146,
+    "closed_at": 1458546435,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://39cbu.ru/"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Калининград"
+          }
+        ]
+      },
+      {
+        "field_id": 525878,
+        "field_name": "Был опыт с контекстной рекламой?",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "да",
+            "enum_id": 1240096
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11240760"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24312920,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24312920"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24312922,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24312922"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11257731,
+    "name": "Юридические услуги",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458049186,
+    "updated_at": 1535021146,
+    "closed_at": 1458633590,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Вологда"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11257731"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24338089,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24338089"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11257841,
+    "name": "ООО НейроМаркетинг",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458049532,
+    "updated_at": 1519286409,
+    "closed_at": 1461568988,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "rll.su"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Вологда"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11257841"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24338265,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24338265"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24338267,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24338267"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11257881,
+    "name": "Вологдапрофиль",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458049740,
+    "updated_at": 1535021146,
+    "closed_at": 1463553483,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://www.vologdaprofil.ru/"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Вологда"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11257881"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24338349,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24338349"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24338351,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24338351"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11271853,
+    "name": "Строительные услуги",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 520377,
+    "updated_by": 549666,
+    "created_at": 1458147694,
+    "updated_at": 1535021146,
+    "closed_at": 1458888319,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11271853"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 23617514,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/23617514"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11275739,
+    "name": "Парикмахер-модельер",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458201357,
+    "updated_at": 1535021146,
+    "closed_at": 1458201391,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11275739"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24365625,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24365625"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11276065,
+    "name": "Avon",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458202485,
+    "updated_at": 1535021146,
+    "closed_at": 1458220084,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Кострома"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11276065"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24366183,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24366183"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11276655,
+    "name": "Мебель",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458204094,
+    "updated_at": 1535021146,
+    "closed_at": 1458204113,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Владимир"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11276655"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24367107,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24367107"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11280159,
+    "name": "Адвокат",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458214081,
+    "updated_at": 1535021146,
+    "closed_at": 1458214089,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Самара"
+          }
+        ]
+      },
+      {
+        "field_id": 525878,
+        "field_name": "Был опыт с контекстной рекламой?",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "да",
+            "enum_id": 1240096
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11280159"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24372657,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24372657"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11292247,
+    "name": "Юридические услуги Великий Устюг",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458302475,
+    "updated_at": 1535021146,
+    "closed_at": 1458713777,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Великий Устюг"
+          }
+        ]
+      },
+      {
+        "field_id": 512316,
+        "field_name": "Ссылка-контакт",
+        "field_code": null,
+        "field_type": "url",
+        "values": [
+          {
+            "value": "https://vk.com/pripravaofficial"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11292247"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24393373,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24393373"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11294463,
+    "name": "Вологдабанк сайт",
+    "price": 185000,
+    "responsible_user_id": 522864,
+    "group_id": 162924,
+    "status_id": 142,
+    "pipeline_id": 46779,
+    "loss_reason_id": null,
+    "created_by": 522864,
+    "updated_by": 522864,
+    "created_at": 1458310968,
+    "updated_at": 1521014422,
+    "closed_at": 1482140188,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Сайт",
+            "enum_id": 1326192
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "вологда"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11294463"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 23638698,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/23638698"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 23638700,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/23638700"
+            }
+          }
+        },
+        {
+          "id": 26144418,
+          "is_main": false,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/26144418"
+            }
+          }
+        },
+        {
+          "id": 26281589,
+          "is_main": false,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/26281589"
+            }
+          }
+        },
+        {
+          "id": 26281605,
+          "is_main": false,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/26281605"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11240792,
+    "name": "Центр правовой защиты в Архангельске",
+    "price": 19000,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1457956464,
+    "updated_at": 1565782458,
+    "closed_at": 1462343772,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://lawhelp29.ru/"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11240792"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24313002,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24313002"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24313004,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24313004"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11264231,
+    "name": "Полимерстройтех",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458116324,
+    "updated_at": 1565782458,
+    "closed_at": 1461142318,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://35bazis.ru/"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Вологда"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11264231"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24347619,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24347619"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24347621,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24347621"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11268841,
+    "name": "Металлоконструкции",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458132347,
+    "updated_at": 1565782458,
+    "closed_at": 1460358007,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Чебоксары"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11268841"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24355613,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24355613"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24355619,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24355619"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11276747,
+    "name": "Быстровозводимые промышленные здания",
+    "price": 44000,
+    "responsible_user_id": 1179729,
+    "group_id": 26679,
+    "status_id": 142,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 1636255,
+    "created_at": 1458204402,
+    "updated_at": 1565782458,
+    "closed_at": 1476798030,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://www.kampanel.ru/"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Набережные челны"
+          }
+        ]
+      },
+      {
+        "field_id": 525878,
+        "field_name": "Был опыт с контекстной рекламой?",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "да",
+            "enum_id": 1240096
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11276747"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24367235,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24367235"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24367237,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24367237"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11286423,
+    "name": "Кирилло-Белозерский музей-заповедник",
+    "price": 30000,
+    "responsible_user_id": 1179726,
+    "group_id": 26679,
+    "status_id": 142,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 1179726,
+    "created_at": 1458281248,
+    "updated_at": 1565782458,
+    "closed_at": 1470310874,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://www.kirmuseum.ru/"
+          }
+        ]
+      },
+      {
+        "field_id": 525504,
+        "field_name": "Описание",
+        "field_code": null,
+        "field_type": "textarea",
+        "values": [
+          {
+            "value": "http://kirmuseum.org/"
+          }
+        ]
+      },
+      {
+        "field_id": 600935,
+        "field_name": "Канал",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "С рекламы",
+            "enum_id": 1394829
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11286423"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24382875,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24382875"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24425428,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24425428"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11251291,
+    "name": "Самогонные аппараты",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458026988,
+    "updated_at": 1573459275,
+    "closed_at": 1460960356,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "magarich.net"
+          }
+        ]
+      },
+      {
+        "field_id": 525504,
+        "field_name": "Описание",
+        "field_code": null,
+        "field_type": "textarea",
+        "values": [
+          {
+            "value": "+2 часа"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Челябинск"
+          }
+        ]
+      },
+      {
+        "field_id": 525878,
+        "field_name": "Был опыт с контекстной рекламой?",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "нет",
+            "enum_id": 1240098
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11251291"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24327647,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24327647"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24327649,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24327649"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11261897,
+    "name": "Квесты Белгород",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458108939,
+    "updated_at": 1573459275,
+    "closed_at": 1458128577,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11261897"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24344601,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24344601"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11263849,
+    "name": "Системы кондиционирования и вентиляции",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458115296,
+    "updated_at": 1573459275,
+    "closed_at": 1460284148,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Калуга"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11263849"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 16186406,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/16186406"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24347539,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24347539"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11275143,
+    "name": "Ремонт и отделка помещений Иркутск",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458199431,
+    "updated_at": 1573459275,
+    "closed_at": 1458888337,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://500009.ru/"
+          }
+        ]
+      },
+      {
+        "field_id": 525504,
+        "field_name": "Описание",
+        "field_code": null,
+        "field_type": "textarea",
+        "values": [
+          {
+            "value": "+ 5 часов"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11275143"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24364743,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24364743"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24364745,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24364745"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11276633,
+    "name": "Кешпоинт под-ка",
+    "price": 0,
+    "responsible_user_id": 581856,
+    "group_id": 29307,
+    "status_id": 142,
+    "pipeline_id": 86220,
+    "loss_reason_id": null,
+    "created_by": 336148,
+    "updated_by": 336148,
+    "created_at": 1458204049,
+    "updated_at": 1575967232,
+    "closed_at": 1476872452,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11276633"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24367079,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24367079"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24367081,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24367081"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11276649,
+    "name": "Кешпоинт сео",
+    "price": 0,
+    "responsible_user_id": 581856,
+    "group_id": 29307,
+    "status_id": 142,
+    "pipeline_id": 86220,
+    "loss_reason_id": null,
+    "created_by": 336148,
+    "updated_by": 336148,
+    "created_at": 1458204087,
+    "updated_at": 1575967232,
+    "closed_at": 1476872443,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11276649"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24367079,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24367079"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24367139,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24367139"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11287149,
+    "name": "Мебель Симферополь",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458283795,
+    "updated_at": 1573459275,
+    "closed_at": 1459759494,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 535552,
+        "field_name": "Сайт еще",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "http://steklomir.in/"
+          }
+        ]
+      },
+      {
+        "field_id": 525504,
+        "field_name": "Описание",
+        "field_code": null,
+        "field_type": "textarea",
+        "values": [
+          {
+            "value": "ещё есть 2 сайта"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Симферополь"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11287149"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24383741,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24383741"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11292221,
+    "name": "Свадебный салон выгодных покупок",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458302326,
+    "updated_at": 1573459275,
+    "closed_at": 1459837987,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 512316,
+        "field_name": "Ссылка-контакт",
+        "field_code": null,
+        "field_type": "url",
+        "values": [
+          {
+            "value": "https://vk.com/club107737462"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11292221"
+      }
+    },
+    "_embedded": {
+      "tags": [],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [
+        {
+          "id": 24491234,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/companies/24491234"
+            }
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "id": 24393333,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24393333"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": 11292757,
+    "name": "Интернет-магазин спортивной обуви",
+    "price": 0,
+    "responsible_user_id": 549666,
+    "group_id": 0,
+    "status_id": 143,
+    "pipeline_id": 7038,
+    "loss_reason_id": null,
+    "created_by": 549666,
+    "updated_by": 549666,
+    "created_at": 1458304069,
+    "updated_at": 1573459275,
+    "closed_at": 1464590736,
+    "closest_task_at": null,
+    "is_deleted": false,
+    "custom_fields_values": [
+      {
+        "field_id": 499034,
+        "field_name": "Квалификация",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Норм",
+            "enum_id": 1176178
+          }
+        ]
+      },
+      {
+        "field_id": 562024,
+        "field_name": "Устаревшее (услуга)",
+        "field_code": null,
+        "field_type": "select",
+        "values": [
+          {
+            "value": "Контекст",
+            "enum_id": 1326190
+          }
+        ]
+      },
+      {
+        "field_id": 525504,
+        "field_name": "Описание",
+        "field_code": null,
+        "field_type": "textarea",
+        "values": [
+          {
+            "value": "сайт планирует через 2 месяца запускать"
+          }
+        ]
+      },
+      {
+        "field_id": 512318,
+        "field_name": "Город",
+        "field_code": null,
+        "field_type": "text",
+        "values": [
+          {
+            "value": "Симферополь"
+          }
+        ]
+      }
+    ],
+    "score": null,
+    "account_id": 9221109,
+    "_links": {
+      "self": {
+        "href": "https://syn.amocrm.ru/api/v4/leads/11292757"
+      }
+    },
+    "_embedded": {
+      "tags": [
+        {
+          "id": 238110,
+          "name": "с сайта"
+        }
+      ],
+      "catalog_elements": [],
+      "loss_reason": [],
+      "companies": [],
+      "contacts": [
+        {
+          "id": 24394003,
+          "is_main": true,
+          "_links": {
+            "self": {
+              "href": "https://syn.amocrm.ru/api/v4/contacts/24394003"
+            }
+          }
+        }
+      ]
+    }
+  }
+]
