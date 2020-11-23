@@ -27,3 +27,16 @@ def test_transform_row(week_transformer):
 
     assert 'source=yandex' in result_row['drupal_utm']
     assert result_row['lead_utm_source'] == 'yandex'
+
+    assert result_row['amo_items_2019'] == 'Яндекс'
+    assert result_row['amo_items_2020'] is None
+
+    with open(os.path.join(os.path.dirname(__file__), 'amo_json_2020_04.json')) as test_file:  # noqa
+        data = json.loads(test_file.read())
+
+    source_row = [row for row in data if row['id'] == 25825446][0]
+
+    result_row = week_transformer.transform_row(source_row)
+
+    assert result_row['amo_items_2019'] is None
+    assert result_row['amo_items_2020'] == 'Каталог (товары, услуги) 25600'

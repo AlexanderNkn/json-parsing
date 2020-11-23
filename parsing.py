@@ -21,6 +21,8 @@ class ParsingJSON:
         'WEEK_OFFSET': dt.timedelta(hours=24 + 24 + 6),
         'CITY_FIELD_ID': 512318,
         'DRUPAL_UTM_FIELD_ID': 632884,
+        'ITEMS_2019_FIELD_ID': 648028,
+        'ITEMS_2020_FIELD_ID': 562024,
         'TILDA_UTM_SOURCE_FIELD_ID': 648158,
         'TILDA_UTM_MEDIUM_FIELD_ID': 648160,
         'TILDA_UTM_CAMPAIGN_FIELD_ID': 648310,
@@ -73,6 +75,12 @@ class ParsingJSON:
             'amo_status_id': source_row['status_id'],
             'amo_pipeline_id': source_row['pipeline_id'],
             'amo_city': custom_field_values.get(self.CONFIG['CITY_FIELD_ID']),
+            'amo_items_2019': custom_field_values.get(
+                self.CONFIG['ITEMS_2019_FIELD_ID']
+            ),
+            'amo_items_2020': custom_field_values.get(
+                self.CONFIG['ITEMS_2020_FIELD_ID']
+            ),
             'drupal_utm': custom_field_values.get(
                 self.CONFIG['DRUPAL_UTM_FIELD_ID']
             ),
@@ -191,11 +199,9 @@ class ParsingJSON:
         return result_row[tilda_key]
 
     def _check_utm(self, result_row, result_row_add):
-
         for key in result_row_add.keys():
-            param = key.split('_')[2]
-            ct_key = 'ct_utm_' + param
-            tilda_key = 'tilda_utm_' + param
+            ct_key = key.replace('lead', 'ct')
+            tilda_key = key.replace('lead', 'tilda')
             if (
                 result_row[ct_key]
                 and (result_row[ct_key] != result_row_add[key])
@@ -204,7 +210,7 @@ class ParsingJSON:
                 and (result_row[tilda_key] != result_row_add[key])
             ):
                 logger.info(
-                    f"Конфликт {'utm_' + param} в сделке {result_row['id']}"
+                    f"Конфликт {key.replace('lead_', '')} в сделке {result_row['id']}"  # noqa
                 )
 
     def load(self, result_rows, tsv_file_name):
