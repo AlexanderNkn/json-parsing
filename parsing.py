@@ -192,8 +192,10 @@ class ParsingJSON:
                     return 'google'
 
             if param == 'medium':
-                if source == 'context' or medium == 'context':
-                    return 'context'
+                keywords_for_medium = ['context', 'context-cpc', 'search']
+                for keyword in keywords_for_medium:
+                    if source == keyword or medium == keyword:
+                        return keyword
 
             return drupal_utm_dict[param]
         return result_row[tilda_key]
