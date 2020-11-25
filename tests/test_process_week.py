@@ -1,4 +1,6 @@
-import os
+# import os
+from unittest import mock
+from pathlib import Path
 import pytest
 import json
 
@@ -9,34 +11,105 @@ def week_transformer():
     return ParsingJSON()
 
 
-def test_transform_row(week_transformer):
+@pytest.fixture
+def mocked_logger():
+    from parsing import logger
+    logger.info = mock.MagicMock()
+    return logger
 
-    with open(os.path.join(os.path.dirname(__file__), 'amo_json_2020_40.json')) as test_file:  # noqa
-        data = json.loads(test_file.read())
 
-    source_row = [row for row in data if row['id'] == 26895186][0]
+def get_test_data(file_name):
+    test_file_path = Path(__file__).parent / file_name
+    with test_file_path.open() as test_file:
+        return json.loads(test_file.read())
 
+
+def test_lead_utm_field_drupal_utm_yandex_and_search(week_transformer, mocked_logger):
+    """Drupal_utm (кастомное поле с field_id=632884) не пустое, и содержит
+    source=search, medium=yandex
+    """
+    test_data = get_test_data('amo_json_2020_04.json')
+
+    source_row = [row for row in test_data if row['id'] == 25827302][0]
     result_row = week_transformer.transform_row(source_row)
 
-    assert result_row['id'] == 26895186
-    assert result_row['amo_city'] == 'Брянск'
-
-    assert result_row['ct_utm_content'] == '<не заполнено>'
-    assert result_row['tilda_utm_content'] is None
-    assert result_row['lead_utm_content'] == 'cntx'
-
-    assert 'source=yandex' in result_row['drupal_utm']
+    assert mocked_logger.info.call_count == 0
     assert result_row['lead_utm_source'] == 'yandex'
+    assert result_row['lead_utm_medium'] == 'search'
+    assert result_row['lead_utm_campaign'] == 'green'
+    assert result_row['lead_utm_content'] == 'cntx'
+    expected = '16679054-1229635987-7566047867--1--none--продвижение_сайтов'
+    assert result_row['lead_utm_term'] == expected
 
-    assert result_row['amo_items_2019'] == 'Яндекс'
-    assert result_row['amo_items_2020'] is None
 
-    with open(os.path.join(os.path.dirname(__file__), 'amo_json_2020_04.json')) as test_file:  # noqa
-        data = json.loads(test_file.read())
+def test_lead_utm_field_drupal_utm_google_and_search(week_transformer, mocked_logger):
+    """Drupal_utm (кастомное поле с field_id=632884) не пустое, и содержит
+    source=search, medium=google
+    """
+    test_data = get_test_data('amo_json_2020_04.json')
 
-    source_row = [row for row in data if row['id'] == 25825446][0]
-
+    source_row = [row for row in test_data if row['id'] == 25840730][0]
     result_row = week_transformer.transform_row(source_row)
 
-    assert result_row['amo_items_2019'] is None
-    assert result_row['amo_items_2020'] == 'Каталог (товары, услуги) 25600'
+    assert mocked_logger.info.call_count == 0
+    assert result_row['lead_utm_source'] == 'google'
+    assert result_row['lead_utm_medium'] == 'search'
+    assert result_row['lead_utm_campaign'] == 'green'
+    assert result_row['lead_utm_content'] == 'cntx'
+    expected = '773449390-39333121183-254178538311--1t2----_яндекс__реклама'
+    assert result_row['lead_utm_term'] == expected
+
+
+def test_lead_utm_field_ct_utm(week_transformer, mocked_logger):
+    """Есть поля ct_type_communication и ct_utm_*"""
+    test_data = get_test_data('amo_json_2020_40.json')
+
+    source_row = [row for row in test_data if row['id'] == 26895186][0]
+    result_row = week_transformer.transform_row(source_row)
+
+    assert mocked_logger.info.call_count == 5
+    assert result_row['lead_utm_source'] == 'yandex'
+    assert result_row['lead_utm_medium'] == 'search'
+    assert result_row['lead_utm_campaign'] == 'green'
+    assert result_row['lead_utm_content'] == 'cntx'
+    expected = '16678927-1229623120-1711872754--2--none--контекстная_реклама'
+    assert result_row['lead_utm_term'] == expected
+
+
+def test_lead_utm_field_drupal_utm_yandex_and_context(week_transformer, mocked_logger):
+    """Drupal_utm (кастомное поле с field_id=632884) не пустое, и содержит
+    содержит source=yandex, medium=context
+    """
+    test_data = get_test_data('amo_json_2020_40.json')
+
+    source_row = [row for row in test_data if row['id'] == 26897900][0]
+    result_row = week_transformer.transform_row(source_row)
+
+    assert mocked_logger.info.call_count == 0
+    assert result_row['lead_utm_source'] == 'yandex'
+    assert result_row['lead_utm_medium'] == 'context'
+    assert result_row['lead_utm_campaign'] == '17600'
+    assert result_row['lead_utm_content'] == 'web'
+    exptd = '46954677-4000555842-8182712256--0--zen.yandex.ru--создание_сайт_под_ключ'
+    assert result_row['lead_utm_term'] == exptd
+
+
+def test_lead_utm_field_drupal_utm_google_and_context(week_transformer, mocked_logger):
+    """Drupal_utm (кастомное поле с field_id=632884) не пустое, и содержит
+    содержит source=google, medium=context
+    """
+    test_data = get_test_data('amo_json_2020_40.json')
+
+    source_row = [row for row in test_data if row['id'] == 26887462][0]
+    result_row = week_transformer.transform_row(source_row)
+
+    assert mocked_logger.info.call_count == 0
+    assert result_row['lead_utm_source'] == 'google'
+    assert result_row['lead_utm_medium'] == 'context'
+    assert result_row['lead_utm_campaign'] == 'blue'
+    assert result_row['lead_utm_content'] == 'cntx'
+    expected = '1351759424-77001425413-378733477874--none--doneto.ru--'
+    assert result_row['lead_utm_term'] == expected
+
+
+
