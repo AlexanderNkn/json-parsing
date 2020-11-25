@@ -1,8 +1,8 @@
-# import os
-from unittest import mock
-from pathlib import Path
-import pytest
 import json
+from pathlib import Path
+from unittest import mock
+
+import pytest
 
 
 @pytest.fixture
@@ -110,6 +110,3 @@ def test_lead_utm_field_drupal_utm_google_and_context(week_transformer, mocked_l
     assert result_row['lead_utm_content'] == 'cntx'
     expected = '1351759424-77001425413-378733477874--none--doneto.ru--'
     assert result_row['lead_utm_term'] == expected
-
-
-
